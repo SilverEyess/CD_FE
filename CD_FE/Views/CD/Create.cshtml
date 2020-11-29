@@ -1,0 +1,157 @@
+﻿@model CD_FE.Models.CD
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>CD</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.CDTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CDTitle, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CDTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CDAuthor, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CDAuthor, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CDAuthor, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Section, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Section, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Section, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.X, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.X, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.X, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Y, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Y, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Y, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Barcode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Barcode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Barcode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OnLoan, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OnLoan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OnLoan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PicFileName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PicFileName, new { htmlAttributes = new { @class = "form-control",
+                                                                                         @id = "picFileName",
+                                                                                         @readonly = "readonly"} })
+                @Html.ValidationMessageFor(model => model.PicFileName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<h2>Drag and Drop CD Image Here</h2>
+<div id="dropArea">Drop your CD Image Here</div>
+<style>
+    #dropArea {
+        background: #b5b5b5;
+        border: black dashed 1px;
+        height: 100px;
+        width: 480px;
+        text-align: center;
+        color: #fff;
+        padding-top: 12px;
+    }
+
+    .active-drop {
+        background: #77bafa !important;
+        border: solid 2px blue !important;
+        opacity: 0.5;
+        color: black !important;
+    }
+</style>
+
+@section Scripts{
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.filedrop.js" }></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#dropArea').filedrop({
+                url: '@Url.Action("UploadFiles")',
+                allowedfiletypes: ['image/jpeg', 'image/png', 'image/gif'],
+                allowedfileextensions: ['.jpg', '.jpeg', '.png', '.gif', '.JPG', '.JPEG', '.PNG'],
+                paramname: 'files',
+                maxfiles: 1,
+                maxfilesize: 5, // in MB
+                dragOver: function () {
+                    $('#dropArea').addClass('active-drop');
+                },
+                dragLeave: function () {
+                    $('#dropArea').removeClass('active-drop');
+                },
+                drop: function () {
+                    $('#dropArea').removeClass('active-drop');
+                },
+                afterAll: function (e) {
+                    $('#dropArea').html('File uploaded successfully.');
+                },
+                uploadFinished: function (i, file, response, time) {
+                    $('#picFileName').val(file.name);
+                }
+            });
+        });
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

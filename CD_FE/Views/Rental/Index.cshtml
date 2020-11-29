@@ -1,0 +1,57 @@
+﻿@model IEnumerable<CD_FE.ViewModels.RentalsViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RentalId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateRented)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateReturned)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffLastName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RentalId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateRented)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateReturned)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffLastName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RentalId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.RentalId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.RentalId })
+        </td>
+    </tr>
+}
+
+</table>

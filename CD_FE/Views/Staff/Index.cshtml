@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CD_FE.Models.Staff>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Staff List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffActive)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffActive)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.StaffId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.StaffId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.StaffId })
+        </td>
+    </tr>
+}
+
+</table>

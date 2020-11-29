@@ -1,0 +1,85 @@
+﻿@model IEnumerable<CD_FE.Models.CD>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CDTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CDAuthor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Section)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.X)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Y)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Barcode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OnLoan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PicFileName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CDTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CDAuthor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Section)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.X)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Y)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Barcode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OnLoan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PicFileName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CDId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CDId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CDId })
+            </td>
+        </tr>
+    }
+</table>
+@using (Html.BeginForm("GetRentalCountData", "Report"))
+{
+    <button name="button" value="GoToReport" class="btn btn-success btn-lrg">Go to Report</button>
+}

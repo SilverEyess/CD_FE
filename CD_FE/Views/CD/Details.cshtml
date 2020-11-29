@@ -1,0 +1,94 @@
+﻿@model CD_FE.Models.CD
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>CD Details</h2>
+
+<div>
+    <h4>CD</h4>
+    <hr />
+    <div class="form-group">
+        <img src="~/UploadedFiles/@Html.DisplayFor(model => model.PicFileName)" style="height:256px;width:256px" />
+    </div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CDTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CDTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CDAuthor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CDAuthor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Section)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Section)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.X)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.X)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Y)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Y)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Barcode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Barcode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OnLoan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OnLoan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PicFileName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PicFileName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CDId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CD_FE.Models.RentedCDs>
+
+@{
+    ViewBag.Title = "GetRentedCDreport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+</head>
+<body>
+    <h2>GetRentedCDreport</h2>
+    @using (Html.BeginForm("GetRentedCDReport", "Report", FormMethod.Get))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Label("Search: ")
+        <input type="text" id="criteria" name="criteria" />
+        <input type="submit" value="Search" class="btn btn-success btn-med" />
+    }
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StaffFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StaffLastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CDTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateRented)
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StaffFirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StaffLastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CDTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateRented)
+                </td>
+            </tr>
+        }
+    </table>
+    @using (Html.BeginForm("ExportRentedCDData", "Report"))
+    {
+        <button name="ExportButton" value="GoToReport" class="btn btn-success btn-lrg">Generate Report</button>
+    }
+</body>
+</html>
